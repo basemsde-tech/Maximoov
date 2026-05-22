@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Maximoov | Melbourne Airport Transfers & Accessible Van Bookings</title>
-    <meta name="description" content="Book a clean, air-conditioned, and reliable Maximoov van across Melbourne. 24/7 on-time service for Airport Transfers, Wheelchair Passenger transport, and large groups. Call 04 66 999 048.">
+    <meta name="description" content="Book a clean, air-conditioned, and reliable Maximoov van across Melbourne. 24/7 on-time service for Airport Transfers, Wheelchair Passenger transport, and large groups. Call 0466 999 048.">
     <meta name="keywords" content="Maximoov, Maximoov Melbourne, Melbourne Maxi Taxi, Airport Transfer Melbourne, Wheelchair Taxi Melbourne, Clean Passenger Van, Reliable Maxi Cab, Parcel Delivery Van Melbourne">
     <link rel="canonical" href="https://maximoov.com.au/" />
     
@@ -14,7 +14,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -26,12 +26,12 @@
                     },
                     colors: {
                         brand: {
-                            black: '#000000',    /* From Logo Text */
-                            dark: '#111827',     /* Rich Charcoal Accent */
-                            light: '#f9fafb',    /* Ultra-Clean Off-White Canvas */
+                            black: '#000000',    
+                            dark: '#111827',     
+                            light: '#f9fafb',    
                         },
                         accent: {
-                            gold: '#facc15',     /* Exact Logo Yellow-Gold Bar */
+                            gold: '#facc15',     
                             hover: '#eab308'
                         }
                     }
@@ -39,6 +39,29 @@
             }
         }
     </script>
+    <style>
+        .autocomplete-suggestions {
+            position: absolute;
+            z-index: 100;
+            background: white;
+            max-height: 240px;
+            overflow-y: auto;
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .autocomplete-suggestion {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color 0.15s ease;
+        }
+        .autocomplete-suggestion:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
 </head>
 <body class="bg-brand-light text-gray-900 font-sans antialiased">
 
@@ -49,19 +72,16 @@
     <header class="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-sm backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
-            <div class="flex items-center h-full py-2">
-                <img src="logo.png" alt="Maximoov Logo" class="h-12 md:h-14 w-auto object-contain" onerror="this.style.display='none'; document.getElementById('logo-text-fallback').style.display='flex';">
-                <div id="logo-text-fallback" class="hidden flex-col">
-                    <span class="text-2xl md:text-3xl font-bold font-display text-brand-black tracking-tight leading-none">
-                        MAXI<span class="text-accent-gold">MOOV</span>
-                    </span>
-                    <span class="text-[10px] font-semibold text-gray-400 tracking-widest uppercase mt-1">Accessible & Group Transit</span>
-                </div>
+            <div class="flex flex-col">
+                <span class="text-2xl md:text-3xl font-black font-display text-brand-black tracking-tight leading-none uppercase">
+                    MAXI<span class="text-accent-hover">MOOV</span>
+                </span>
+                <span class="text-[9px] font-bold text-gray-400 tracking-widest uppercase mt-1">Accessible & Group Transit</span>
             </div>
 
-            <a href="tel:0466999048" class="flex items-center space-x-2 bg-brand-black hover:bg-brand-dark text-white font-bold px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl transition-all duration-200 transform active:scale-95 shadow-md border border-gray-800">
+            <a href="tel:0466999048" class="flex items-center space-x-2 bg-brand-black hover:bg-brand-dark text-white font-bold px-4 py-2.5 sm:px-5 sm:py-3 rounded-xl transition-all duration-200 transform active:scale-[0.97] shadow-md border border-gray-800">
                 <i class="fa-solid fa-phone text-base sm:text-lg text-accent-gold"></i>
-                <span class="text-sm sm:text-base tracking-tight">04 66 999 048</span>
+                <span class="text-sm sm:text-base tracking-tight">0466 999 048</span>
             </a>
         </div>
     </header>
@@ -102,7 +122,7 @@
                         <span>Oops! There was a problem submitting your request. Please check your entries or call us directly.</span>
                     </div>
 
-                    <form id="taxi-booking-form" class="space-y-4">
+                    <form id="taxi-booking-form" class="space-y-4" autocomplete="off">
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
@@ -146,7 +166,7 @@
                         <div id="flight_field" class="hidden max-w-full p-4 bg-amber-50 border border-accent-gold/30 rounded-xl space-y-2 transition-all">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1">Flight Number *</label>
-                                <input type="text" id="flight_number" name="Flight Number" data-fs-field placeholder="e.g. QF401, VA214, JQ500" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm uppercase focus:outline-none focus:border-brand-black transition-all">
+                                <input type="text" id="flight_number" name="Flight Number" data-fs-field placeholder="e.g. QF401, VA214, JQ500" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm uppercase focus:outline-none focus:border-brand-green transition-all">
                                 <span data-fs-error="Flight Number" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                             <p class="text-[11px] text-gray-600 leading-normal flex items-start gap-1">
@@ -156,21 +176,23 @@
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-location-dot text-accent-gold mr-1"></i> Pickup Suburb / Airport Hub *</label>
-                                <input type="text" name="Pickup Location" list="melbourne-autofill" required data-fs-field placeholder="Type suburb or airport..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all">
+                            <div class="relative">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-location-dot text-accent-gold mr-1"></i> Pickup Suburb / Hub *</label>
+                                <input type="text" id="pickup_location" name="Pickup Location" required data-fs-field placeholder="Type suburb, hospital, airport..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all">
+                                <div id="pickup_suggestions" class="autocomplete-suggestions hidden"></div>
                                 <span data-fs-error="Pickup Location" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
-                            <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-flag-checkered text-accent-gold mr-1"></i> Destination Suburb / Airport Hub *</label>
-                                <input type="text" name="Destination Location" list="melbourne-autofill" required data-fs-field placeholder="Type drop-off suburb or airport..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all">
+                            <div class="relative">
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-flag-checkered text-accent-gold mr-1"></i> Destination Suburb / Hub *</label>
+                                <input type="text" id="destination_location" name="Destination Location" required data-fs-field placeholder="Type drop-off location..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all">
+                                <div id="destination_suggestions" class="autocomplete-suggestions hidden"></div>
                                 <span data-fs-error="Destination Location" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                         </div>
                         
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Special Requirements & Luggage Details</label>
-                            <textarea name="Customer Special Notes" rows="3" data-fs-field placeholder="Include full specific addresses, luggage counts, baby seat or wheelchair hoist requirements..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all"></textarea>
+                            <textarea name="Customer Special Notes" rows="3" data-fs-field placeholder="Include full specific street addresses, luggage counts, baby seat or wheelchair configuration details..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-black focus:ring-2 focus:ring-brand-black/5 transition-all"></textarea>
                             <span data-fs-error="Customer Special Notes" class="text-xs text-red-600 mt-1 block font-medium"></span>
                         </div>
 
@@ -226,42 +248,139 @@
 
     <footer class="bg-brand-dark text-white pt-12 pb-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div class="space-y-2">
-                <span class="text-2xl font-bold font-display text-white tracking-tight block">MAXI<span class="text-accent-gold">MOOV</span></span>
-                <p class="text-xs text-accent-gold/90 font-bold uppercase tracking-widest">Accessible &bull; Premium &bull; Reliable &bull; On Time</p>
+            
+            <div class="flex flex-col items-center">
+                <span class="text-2xl font-black font-display text-white tracking-tight leading-none uppercase">
+                    MAXI<span class="text-accent-gold">MOOV</span>
+                </span>
+                <p class="text-xs text-accent-gold/90 font-bold uppercase tracking-widest mt-2">Accessible &bull; Premium &bull; Reliable &bull; On Time</p>
             </div>
+            
             <p class="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto leading-relaxed">
                 Operating high-quality specialized passenger van systems throughout Melbourne Central Business District, metropolitan suburbs, and regional transport hubs.
             </p>
             <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
                 <p>&copy; 2026 maximoov.com.au. All Rights Reserved.</p>
-                <a href="tel:0466999048" class="text-accent-gold font-bold hover:underline">Direct Booking: 04 66 999 048</a>
+                <a href="tel:0466999048" class="text-accent-yellow font-bold hover:underline">Direct Booking: 0466 999 048</a>
             </div>
         </div>
     </footer>
-
-    <datalist id="melbourne-autofill">
-        <option value="Melbourne Airport (Tullamarine) VIC 3045"></option>
-        <option value="Avalon Airport, VIC 3212"></option>
-        <option value="Melbourne CBD, VIC 3000"></option>
-        <option value="Endeavour Hills, VIC 3802"></option>
-        <option value="Dandenong, VIC 3175"></option>
-        <option value="St Kilda, VIC 3182"></option>
-        <option value="Richmond, VIC 3121"></option>
-        <option value="Box Hill, VIC 3128"></option>
-        <option value="Frankston, VIC 3199"></option>
-        <option value="Werribee, VIC 3030"></option>
-        <option value="Southbank, VIC 3006"></option>
-        <option value="Docklands, VIC 3008"></option>
-        <option value="Chadstone, VIC 3148"></option>
-        <option value="Glen Waverley, VIC 3150"></option>
-    </datalist>
 
     <script>
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', { formElement: '#taxi-booking-form', formId: 'xojbdzel' });
     </script>
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+    <script>
+        // Highly localized Melbourne Hub Dataset Matrix
+        const locations = [
+            // Airports
+            "Melbourne Airport (Tullamarine) VIC 3045",
+            "Avalon Airport, Beach Rd, Lara VIC 3212",
+            "Essendon Fields Airport VIC 3041",
+            
+            // Key Hubs & Suburbs
+            "Melbourne CBD, VIC 3000", "Endeavour Hills, VIC 3802", "Dandenong, VIC 3175", 
+            "Dandenong South, VIC 3175", "St Kilda, VIC 3182", "Richmond, VIC 3121", 
+            "Box Hill, VIC 3128", "Frankston, VIC 3199", "Werribee, VIC 3030", 
+            "Southbank, VIC 3006", "Docklands, VIC 3008", "Chadstone, VIC 3148", 
+            "Glen Waverley, VIC 3150", "Berwick, VIC 3806", "Cranbourne, VIC 3977",
+            "Narre Warren, VIC 3805", "Pakenham, VIC 3810", "Clayton, VIC 3168",
+            "Springvale, VIC 3171", "Rowville, VIC 3178", "Mulgrave, VIC 3170",
+            "Ringwood, VIC 3134", "Doncaster, VIC 3108", "Preston, VIC 3072",
+            "Brunswick, VIC 3056", "Footscray, VIC 3011", "Geelong, VIC 3220",
+            "Brighton, VIC 3186", "Toorak, VIC 3142", "Camberwell, VIC 3124",
+            
+            // Major Melbourne Hospitals
+            "The Royal Melbourne Hospital (Parkville)",
+            "The Alfred Hospital (Melbourne)",
+            "St Vincent's Hospital (Fitzroy)",
+            "Monash Medical Centre (Clayton)",
+            "Dandenong Hospital (Dandenong)",
+            "Casey Hospital (Berwick)",
+            "Box Hill Hospital (Box Hill)",
+            "Austin Hospital (Heidelberg)",
+            "Northern Hospital (Epping)",
+            "Sunshine Hospital (St Albans)",
+            "Western Hospital (Footscray)",
+            "Frankston Hospital (Frankston)",
+            "Royal Children's Hospital (Parkville)",
+            "Royal Women's Hospital (Parkville)",
+            "Epworth Richmond Hospital (Richmond)",
+            "Knox Private Hospital (Wantirna South)",
+            "Waverley Private Hospital (Mount Waverley)",
+            
+            // Major Shopping Centers
+            "Chadstone Shopping Centre (The Fashion Capital)",
+            "Westfield Fountain Gate (Narre Warren)",
+            "Dandenong Plaza (Dandenong)",
+            "The Glen Shopping Centre (Glen Waverley)",
+            "Westfield Doncaster (Doncaster)",
+            "Eastland Shopping Centre (Ringwood)",
+            "Highpoint Shopping Centre (Maribyrnong)",
+            "Knox Westfield (Wantirna South)",
+            "Westfield Southland (Cheltenham)",
+            "Pacific Werribee (Werribee)",
+            "Northland Shopping Centre (Preston)",
+            "Box Hill Central (Box Hill)",
+            "Melbourne Central (CBD)"
+        ];
+
+        function setupAutocomplete(inputEl, suggestionsEl) {
+            inputEl.addEventListener('input', function() {
+                const val = this.value.toLowerCase().trim();
+                suggestionsEl.innerHTML = '';
+                
+                if (!val) {
+                    suggestionsEl.classList.add('hidden');
+                    return;
+                }
+
+                // Filter logic: match string contains or direct match
+                const matches = locations.filter(loc => loc.toLowerCase().includes(val))
+                                         .slice(0, 6); // Limit view viewport strictly to top 6 hits
+
+                if (matches.length === 0) {
+                    suggestionsEl.classList.add('hidden');
+                    return;
+                }
+
+                matches.forEach(match => {
+                    const div = document.createElement('div');
+                    div.className = 'autocomplete-suggestion';
+                    
+                    // Highlight matching characters cleanly
+                    const index = match.toLowerCase().indexOf(val);
+                    if (index >= 0) {
+                        div.innerHTML = match.substring(0, index) + 
+                                        '<strong>' + match.substring(index, index + val.length) + '</strong>' + 
+                                        match.substring(index + val.length);
+                    } else {
+                        div.textContent = match;
+                    }
+
+                    div.addEventListener('click', function() {
+                        inputEl.value = match;
+                        suggestionsEl.classList.add('hidden');
+                    });
+                    suggestionsEl.appendChild(div);
+                });
+
+                suggestionsEl.classList.remove('hidden');
+            });
+
+            // Close dynamic dropdown logic arrays when users shift window focus points
+            document.addEventListener('click', function(e) {
+                if (e.target !== inputEl && e.target !== suggestionsEl) {
+                    suggestionsEl.classList.add('hidden');
+                }
+            });
+        }
+
+        setupAutocomplete(document.getElementById('pickup_location'), document.getElementById('pickup_suggestions'));
+        setupAutocomplete(document.getElementById('destination_location'), document.getElementById('destination_suggestions'));
+    </script>
 
     <script>
         const serviceSelector = document.getElementById('service_type');
