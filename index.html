@@ -163,6 +163,18 @@
                             <span data-fs-error="Service Requested" class="text-xs text-red-600 mt-1 block font-medium"></span>
                         </div>
 
+                        <div id="mptp_field" class="hidden max-w-full p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-start gap-3 transition-all duration-200">
+                            <div class="flex items-center h-5 mt-0.5">
+                                <input id="mptp_card_available" name="WC MPTP Card Member" type="checkbox" value="Yes - Active Card Holder" class="w-4 h-4 text-brand-black border-gray-300 rounded focus:ring-brand-black accent-brand-black cursor-pointer">
+                            </div>
+                            <div class="text-sm leading-tight">
+                                <label for="mptp_card_available" class="font-bold text-brand-black cursor-pointer flex items-center gap-1.5">
+                                    <i class="fa-solid fa-address-card text-accent-gold text-base"></i> Holds Active Wheelchair MPTP Card?
+                                </label>
+                                <p class="text-xs text-gray-500 mt-0.5">Check this box if the traveler holds an active Victorian Multi Purpose Taxi Program card for accessible subsidies.</p>
+                            </div>
+                        </div>
+
                         <div id="flight_field" class="hidden max-w-full p-4 bg-amber-50 border border-accent-gold/30 rounded-xl space-y-2 transition-all">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-brand-black mb-1">Flight Number *</label>
@@ -273,7 +285,6 @@
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
     <script>
-        // High-Density Unified Location Directory Array
         const locations = [
             /* Airports & Transportation Centres */
             "Melbourne Airport (Tullamarine) VIC 3045", "Avalon Airport, Lara VIC 3212", "Essendon Fields Airport VIC 3041", "Southern Cross Station (Melbourne CBD)", "Flinders Street Station (Melbourne CBD)",
@@ -284,7 +295,7 @@
             /* Premier Shopping Malls & Retail Hubs */
             "Chadstone Shopping Centre (Malvern East)", "Westfield Fountain Gate (Narre Warren)", "Dandenong Plaza (Dandenong)", "The Glen Shopping Centre (Glen Waverley)", "Westfield Doncaster (Doncaster)", "Eastland Shopping Centre (Ringwood)", "Highpoint Shopping Centre (Maribyrnong)", "Knox Westfield (Wantirna South)", "Westfield Southland (Cheltenham)", "Pacific Werribee (Werribee)", "Northland Shopping Centre (Preston)", "Box Hill Central (Box Hill)", "Melbourne Central (Melbourne CBD)", "Chirnside Park Shopping Centre", "Forest Hill Chase (Forest Hill)", "Watergardens Town Centre (Taylors Lakes)", "Pacific Epping (Epping)", "Bayside Shopping Centre (Frankston)", "Waverley Gardens Shopping Centre (Mulgrave)", "Brandon Park Shopping Centre (Wheelers Hill)", "Casey Central Shopping Centre (Narre Warren South)", "Parkmore Shopping Centre (Keyborough)", "Cranbourne Park Shopping Centre (Cranbourne)",
             
-            /* Full Alphabetical Exhaustive Suburb Manifest Matrix */
+            /* Suburb Manifest Matrix */
             "Abbotsford, VIC 3067", "Aberfeldie, VIC 3040", "Aintree, VIC 3336", "Airport West, VIC 3042", "Albanvale, VIC 3021", "Albert Park, VIC 3206", "Albion, VIC 3020", "Alphington, VIC 3078", "Altona, VIC 3018", "Altona Meadows, VIC 3028", "Altona North, VIC 3025", "Ardeer, VIC 3022", "Armadale, VIC 3143", "Ascot Vale, VIC 3032", "Ashburton, VIC 3147", "Ashwood, VIC 3147", "Aspendale, VIC 3195", "Aspendale Gardens, VIC 3192", "Attwood, VIC 3049", "Avondale Heights, VIC 3034",
             "Balaclava, VIC 3183", "Balwyn, VIC 3103", "Balwyn North, VIC 3104", "Bangholme, VIC 3175", "Bayswater, VIC 3153", "Bayswater North, VIC 3153", "Beaconsfield, VIC 3807", "Beaconsfield Upper, VIC 3808", "Beaumaris, VIC 3193", "Belgrave, VIC 3160", "Belgrave Heights, VIC 3160", "Belgrave South, VIC 3160", "Bellfield, VIC 3081", "Bentleigh, VIC 3204", "Bentleigh East, VIC 3165", "Berwick, VIC 3806", "Beveridge, VIC 3753", "Biatern, VIC 3918", "Black Rock, VIC 3193", "Blackburn, VIC 3130", "Blackburn North, VIC 3130", "Blackburn South, VIC 3130", "Blairgowrie, VIC 3942", "Bonbeach, VIC 3196", "Boronia, VIC 3155", "Box Hill, VIC 3128", "Box Hill North, VIC 3129", "Box Hill South, VIC 3128", "Braeside, VIC 3195", "Braybrook, VIC 3019", "Briar Hill, VIC 3088", "Brighton, VIC 3186", "Brighton East, VIC 3187", "Broadmeadows, VIC 3047", "Brookfield, VIC 3338", "Brooklyn, VIC 3012", "Brunswick, VIC 3056", "Brunswick East, VIC 3057", "Brunswick West, VIC 3055", "Bulleen, VIC 3105", "Bundoora, VIC 3083", "Burnley, VIC 3121", "Burnside, VIC 3023", "Burnside Heights, VIC 3023", "Burwood, VIC 3125", "Burwood East, VIC 3151",
             "Cairnlea, VIC 3023", "Calder Park, VIC 3037", "Camberwell, VIC 3124", "Campbellfield, VIC 3061", "Canterbury, VIC 3126", "Carlton, VIC 3053", "Carlton North, VIC 3054", "Carnegie, VIC 3163", "Caroline Springs, VIC 3023", "Carrum, VIC 3197", "Carrum Downs, VIC 3201", "Caulfield, VIC 3162", "Caulfield East, VIC 3145", "Caulfield North, VIC 3161", "Caulfield South, VIC 3162", "Chadstone, VIC 3148", "Chelsea, VIC 3196", "Chelsea Heights, VIC 3196", "Cheltenham, VIC 3192", "Chirnside Park, VIC 3116", "Clarinda, VIC 3169", "Clayton, VIC 3168", "Clayton South, VIC 3169", "Clifton Hill, VIC 3068", "Clyde, VIC 3978", "Clyde North, VIC 3978", "Cobblebank, VIC 3338", "Coburg, VIC 3058", "Coburg North, VIC 3058", "Collingwood, VIC 3066", "Coolaroo, VIC 3048", "Craigieburn, VIC 3064", "Cranbourne, VIC 3977", "Cranbourne East, VIC 3977", "Cranbourne North, VIC 3977", "Cranbourne South, VIC 3977", "Cranbourne West, VIC 3977", "Cremorne, VIC 3121", "Croydon, VIC 3136", "Croydon Hills, VIC 3136", "Croydon North, VIC 3136", "Croydon South, VIC 3136",
@@ -305,7 +316,7 @@
             "Tarneit, VIC 3029", "Taylors Hill, VIC 3037", "Taylors Lakes, VIC 3038", "Tecoma, VIC 3160", "Templestowe, VIC 3106", "Templestowe Lower, VIC 3107", "The Basin, VIC 3154", "Thomastown, VIC 3074", "Thornbury, VIC 3071", "Toorak, VIC 3142", "Tootgarook, VIC 3941", "Tottenham, VIC 3012", "Travancore, VIC 3032", "Truganina, VIC 3029", "Tullamarine, VIC 3043",
             "Upfield, VIC 3047", "Upwey, VIC 3158",
             "Vermont, VIC 3133", "Vermont South, VIC 3133", "Victoria Park, VIC 3067",
-            "Wallan, VIC 3756", "Wandin North, VIC 3139", "Wantirna, VIC 3152", "Wantirna South, VIC 3152", "Warrandyte, VIC 3113", "Warrandyte South, VIC 3134", "Warranwood, VIC 3134", "Waterways, VIC 3195", "Watsonia, VIC 3087", "Watsonia North, VIC 3087", "Wattle Glen, VIC 3096", "Weering, VIC 3338", "Werribee, VIC 3030", "Werribee South, VIC 3030", "West Melbourne, VIC 3003", "Westmeadows, VIC 3049", "Wheelers Hill, VIC 3150", "Whittlesea, VIC 3757", "Williams Landing, VIC 3027", "Williamstown, VIC 3016", "Williamstown North, VIC 3016", "Windsor, VIC 3181", "Wollert, VIC 3750", "Wonga Park, VIC 3115", "Wyndham Vale, VIC 3024",
+            "Wallan, VIC 3756", "Wandin North, VIC 3139", "Wantirna, VIC 3152", "Wantirna South, VIC 3152", "Warrandyte, VIC 3113", "Warrandyte South, VIC 3134", "Warranwood, VIC 3134", "Waterways, VIC 3195", "Watsonia, VIC 3087", "Watsonia North, VIC 3087", "Wattle Glen, VIC 3096", "Weering, VIC 3338", "Werribee, VIC 3030", "Weribe South, VIC 3030", "West Melbourne, VIC 3003", "Westmeadows, VIC 3049", "Wheelers Hill, VIC 3150", "Whittlesea, VIC 3757", "Williams Landing, VIC 3027", "Williamstown, VIC 3016", "Williamstown North, VIC 3016", "Windsor, VIC 3181", "Wollert, VIC 3750", "Wonga Park, VIC 3115", "Wyndham Vale, VIC 3024",
             "Yallambie, VIC 3085", "Yan Yean, VIC 3755", "Yarra Glen, VIC 3775", "Yarrambat, VIC 3091", "Yarraville, VIC 3013"
         ];
 
@@ -319,17 +330,13 @@
                     return;
                 }
 
-                // Smart Filter System: Scores items prioritizing entries starting with the search query
                 const typedWords = val.split(/[\s,]+/);
                 
                 const matches = locations.map(loc => {
                     const locLower = loc.toLowerCase();
                     let score = 0;
-                    
-                    // Match starting positions heavily
                     if (locLower.startsWith(val)) score += 100;
                     
-                    // Count matching component segments
                     let containsAllWords = true;
                     typedWords.forEach(word => {
                         if (locLower.includes(word)) {
@@ -343,7 +350,7 @@
                 })
                 .filter(item => item.score > 0)
                 .sort((a, b) => b.score - a.score)
-                .slice(0, 7); // Show exactly top 7 highly accurate matches to fill out screen neatly
+                .slice(0, 7);
 
                 if (matches.length === 0) {
                     suggestionsEl.classList.add('hidden');
@@ -354,7 +361,6 @@
                     const div = document.createElement('div');
                     div.className = 'autocomplete-suggestion';
                     
-                    // Highlight logic
                     const matchText = match.name;
                     const index = matchText.toLowerCase().indexOf(val);
                     if (index >= 0) {
@@ -388,10 +394,15 @@
 
     <script>
         const serviceSelector = document.getElementById('service_type');
+        
+        // Target Areas
         const flightContainer = document.getElementById('flight_field');
         const flightInput = document.getElementById('flight_number');
+        const mptpContainer = document.getElementById('mptp_field');
+        const mptpCheckbox = document.getElementById('mptp_card_available');
 
         serviceSelector.addEventListener('change', function() {
+            // Airport Visibility Logic
             if (this.value === 'Airport Transfer') {
                 flightContainer.classList.remove('hidden');
                 flightInput.setAttribute('required', 'true');
@@ -399,6 +410,14 @@
                 flightContainer.classList.add('hidden');
                 flightInput.removeAttribute('required');
                 flightInput.value = ''; 
+            }
+
+            // Wheelchair / MPTP Card Visibility Logic
+            if (this.value === 'Wheelchair Passenger') {
+                mptpContainer.classList.remove('hidden');
+            } else {
+                mptpContainer.classList.add('hidden');
+                mptpCheckbox.checked = false; // Reset checking metric out on switch
             }
         });
     </script>
