@@ -88,33 +88,47 @@
                     <h3 class="text-xl sm:text-2xl font-bold font-display text-brand-dark mb-1">Online Booking Request</h3>
                     <p class="text-xs text-gray-500 mb-6">Fill out your details to receive an instant dispatch quote.</p>
                     
-                    <form action="https://formspree.io/f/xojbdzel" method="POST" class="space-y-4">
+                    <div data-fs-success class="hidden p-4 mb-4 text-sm text-green-800 rounded-xl bg-green-50 border border-green-200 font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check text-lg"></i>
+                        <span>Thank you! Your booking request has been submitted successfully. We'll contact you shortly.</span>
+                    </div>
+
+                    <div data-fs-error class="hidden p-4 mb-4 text-sm text-red-800 rounded-xl bg-red-50 border border-red-200 font-medium flex items-center gap-2">
+                        <i class="fa-solid fa-circle-exclamation text-lg"></i>
+                        <span>Oops! There was a problem submitting your request. Please check your entries or call us directly.</span>
+                    </div>
+
+                    <form id="taxi-booking-form" class="space-y-4">
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Your Name *</label>
-                                <input type="text" name="Customer Name" required class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <input type="text" name="Customer Name" required data-fs-field class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <span data-fs-error="Customer Name" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Mobile Number *</label>
-                                <input type="tel" name="Mobile Number" required class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <input type="tel" name="Mobile Number" required data-fs-field class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <span data-fs-error="Mobile Number" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                         </div>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Pickup Date * <span class="text-gray-400 font-normal">(DD/MM/YYYY)</span></label>
-                                <input type="date" name="Pickup Date" required min="2026-01-01" class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <input type="date" name="Pickup Date" required min="2026-01-01" data-fs-field class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <span data-fs-error="Pickup Date" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Pickup Time *</label>
-                                <input type="time" name="Pickup Time" required class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <input type="time" name="Pickup Time" required data-fs-field class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-3 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <span data-fs-error="Pickup Time" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Required Service Type *</label>
-                            <select id="service_type" name="Service Requested" required class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all text-gray-700 bg-white">
+                            <select id="service_type" name="Service Requested" required data-fs-field class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all text-gray-700 bg-white">
                                 <option value="" disabled selected>Choose your vehicle option</option>
                                 <option value="Airport Transfer">Airport Transfer (Tullamarine / Avalon)</option>
                                 <option value="Regular">Regular (Standard Transport)</option>
@@ -122,12 +136,14 @@
                                 <option value="Wheelchair Passenger">Wheelchair Passenger (Certified Hoists & Restraints)</option>
                                 <option value="Parcel">Parcel (Large Cargo Point-to-Point Deliveries)</option>
                             </select>
+                            <span data-fs-error="Service Requested" class="text-xs text-red-600 mt-1 block font-medium"></span>
                         </div>
 
                         <div id="flight_field" class="hidden max-w-full p-4 bg-emerald-50/60 border border-brand-green/10 rounded-xl space-y-2 transition-all">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark mb-1">Flight Number *</label>
-                                <input type="text" id="flight_number" name="Flight Number" placeholder="e.g. QF401, VA214, JQ500" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm uppercase focus:outline-none focus:border-brand-green transition-all">
+                                <input type="text" id="flight_number" name="Flight Number" data-fs-field placeholder="e.g. QF401, VA214, JQ500" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-sm uppercase focus:outline-none focus:border-brand-green transition-all">
+                                <span data-fs-error="Flight Number" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                             <p class="text-[11px] text-brand-green/90 leading-normal flex items-start gap-1">
                                 <i class="fa-solid fa-circle-info text-xs mt-0.5"></i>
@@ -138,117 +154,8 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-location-dot text-brand-green mr-1"></i> Pickup Suburb / Airport Hub *</label>
-                                <input type="text" name="Pickup Location" list="melbourne-autofill" required placeholder="Type suburb name or airport..." class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <input type="text" name="Pickup Location" list="melbourne-autofill" required data-fs-field placeholder="Type suburb name or airport..." class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
+                                <span data-fs-error="Pickup Location" class="text-xs text-red-600 mt-1 block font-medium"></span>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-flag-checkered text-brand-green mr-1"></i> Destination Suburb / Airport Hub *</label>
-                                <input type="text" name="Destination Location" list="melbourne-autofill" required placeholder="Type drop-off suburb or airport..." class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Special Requirements & Flight/Luggage Details</label>
-                            <textarea name="Customer Special Notes" rows="3" placeholder="Include precise full address houses, luggage counts, baby seat requests, child restraints needs etc." class="w-full bg-gray-50/50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:bg-white focus:border-brand-green focus:ring-2 focus:ring-brand-green/10 transition-all"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-brand-green hover:bg-brand-dark text-white font-bold text-base py-4 rounded-xl transition-all duration-150 active:scale-[0.99] shadow-lg shadow-brand-green/15 mt-2">
-                            Submit Booking Request
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <section class="py-12 lg:py-20 bg-white border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-                <h2 class="text-2xl sm:text-3xl font-bold font-display text-brand-dark tracking-tight">Dedicated Melbourne Wide Solutions</h2>
-                <p class="mt-3 text-gray-500 text-sm sm:text-base">Immaculate fleet vehicles with crisp air conditioning configurations tailored perfectly to every use case.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="p-6 bg-brand-light/40 border border-emerald-600/5 rounded-2xl">
-                    <div class="bg-brand-green text-accent-yellow w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-xl shadow-sm">
-                        <i class="fa-solid fa-plane"></i>
-                    </div>
-                    <h3 class="font-bold font-display text-lg text-brand-dark mb-2">Airport Transfers</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">Direct, on-time arrivals at Tullamarine & Avalon. Roomy configurations accommodate extensive baggage easily.</p>
-                </div>
-                <div class="p-6 bg-brand-light/40 border border-emerald-600/5 rounded-2xl">
-                    <div class="bg-brand-green text-accent-yellow w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-xl shadow-sm">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <h3 class="font-bold font-display text-lg text-brand-dark mb-2">Maxi Group Logistics</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">Keep families and colleagues unified. Excellent head clearance profiles suited for corporate events and functions.</p>
-                </div>
-                <div class="p-6 bg-brand-light/40 border border-emerald-600/5 rounded-2xl">
-                    <div class="bg-brand-green text-accent-yellow w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-xl shadow-sm">
-                        <i class="fa-solid fa-wheelchair"></i>
-                    </div>
-                    <h3 class="font-bold font-display text-lg text-brand-dark mb-2">Wheelchair Access</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">Equipped with reliable floor ramps and lockable passenger structural restraints for fully safe, trusted transit.</p>
-                </div>
-                <div class="p-6 bg-brand-light/40 border border-emerald-600/5 rounded-2xl">
-                    <div class="bg-brand-green text-accent-yellow w-12 h-12 rounded-xl flex items-center justify-center mb-5 text-xl shadow-sm">
-                        <i class="fa-solid fa-box-open"></i>
-                    </div>
-                    <h3 class="font-bold font-display text-lg text-brand-dark mb-2">Secure Parcel Freight</h3>
-                    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">Rapid point-to-point regional parcel shipping for bulky components, inventory, or equipment delivery.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-brand-dark text-white pt-12 pb-8 border-t border-brand-green/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div class="space-y-2">
-                <span class="text-2xl font-bold font-display text-white tracking-tight block">13Melbourne <span class="text-accent-yellow">Maxi</span></span>
-                <p class="text-xs text-emerald-600/80 font-bold uppercase tracking-widest">Clean &bull; Air-Conditioned &bull; Reliable &bull; On Time</p>
-            </div>
-            <p class="text-xs sm:text-sm text-gray-400 max-w-xl mx-auto leading-relaxed">
-                Operating direct premium passenger dispatch systems all throughout Melbourne Central Business District, metropolitan suburbs, and airport terminals.
-            </p>
-            <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-                <p>&copy; 2026 13melbournemaxi.com.au. All Rights Reserved.</p>
-                <a href="tel:0466999048" class="text-accent-yellow font-bold hover:underline">Direct Phone: 04 66 999 048</a>
-            </div>
-        </div>
-    </footer>
-
-    <datalist id="melbourne-autofill">
-        <option value="Melbourne Airport (Tullamarine) VIC 3045"></option>
-        <option value="Avalon Airport, VIC 3212"></option>
-        <option value="Melbourne CBD, VIC 3000"></option>
-        <option value="Endeavour Hills, VIC 3802"></option>
-        <option value="Dandenong, VIC 3175"></option>
-        <option value="St Kilda, VIC 3182"></option>
-        <option value="Richmond, VIC 3121"></option>
-        <option value="Box Hill, VIC 3128"></option>
-        <option value="Frankston, VIC 3199"></option>
-        <option value="Werribee, VIC 3030"></option>
-        <option value="Southbank, VIC 3006"></option>
-        <option value="Docklands, VIC 3008"></option>
-        <option value="Chadstone, VIC 3148"></option>
-        <option value="Glen Waverley, VIC 3150"></option>
-    </datalist>
-
-    <script>
-        const serviceSelector = document.getElementById('service_type');
-        const flightContainer = document.getElementById('flight_field');
-        const flightInput = document.getElementById('flight_number');
-
-        serviceSelector.addEventListener('change', function() {
-            if (this.value === 'Airport Transfer') {
-                flightContainer.classList.remove('hidden');
-                flightInput.setAttribute('required', 'true');
-            } else {
-                flightContainer.classList.add('hidden');
-                flightInput.removeAttribute('required');
-                flightInput.value = ''; 
-            }
-        });
-    </script>
-</body>
-</html>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1"><i class="fa-solid fa-flag-checkered text-brand-green mr
